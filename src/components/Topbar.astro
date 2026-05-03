@@ -1,10 +1,5 @@
 ---
 const { pathname } = Astro.url;
-const isWriting = pathname.startsWith('/posts');
----
-
----
-const { pathname } = Astro.url;
 const isWriting = pathname.includes('/posts');
 const base = import.meta.env.BASE_URL;
 ---
