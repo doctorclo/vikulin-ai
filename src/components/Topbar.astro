@@ -3,10 +3,16 @@ const { pathname } = Astro.url;
 const isWriting = pathname.startsWith('/posts');
 ---
 
+---
+const { pathname } = Astro.url;
+const isWriting = pathname.includes('/posts');
+const base = import.meta.env.BASE_URL;
+---
+
 <header class="topbar">
-  <a href="/" class="brand">Всеволод Викулин</a>
+  <a href={base} class="brand">Всеволод Викулин</a>
   <nav>
-    <a href="/#articles" class={isWriting ? 'active' : ''}>Статьи</a>
-    <a href="/#contacts">Контакты</a>
+    <a href={`${base}#articles`} class={isWriting ? 'active' : ''}>Статьи</a>
+    <a href={`${base}#contacts`}>Контакты</a>
   </nav>
 </header>
