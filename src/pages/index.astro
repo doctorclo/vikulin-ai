@@ -54,7 +54,7 @@ const formatDate = (date: Date) => {
         {posts.map((post) => (
           <>
             <span class="post-date">{formatDate(post.data.date)}</span>
-            <a href={`/vikulin-ai/posts/${post.slug}/`} class="post-title">
+            <a href={`/posts/${post.slug}/`} class="post-title">
               {post.data.title}
             </a>
           </>
