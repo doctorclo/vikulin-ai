@@ -1,0 +1,84 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Topbar from '../components/Topbar.astro';
+
+const posts = (await getCollection('posts', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const formatDate = (date: Date) => {
+  const months = ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+};
+---
+
+<BaseLayout title="Всеволод Викулин">
+  <Topbar />
+
+  <section class="intro">
+    <p>
+      Меня зовут Всеволод. 9 лет занимаюсь внедрением AI в продуктах Yandex, VK и Т-Банка.
+      Прошёл путь от инженера до руководителя команд разработки.
+    </p>
+
+    <p>
+      За это время видел сотни проектов — успешных и провальных. Закономерность одна:
+      успех в AI — не про гениальную архитектуру нейросети и не про тысячи GPU. Успех — это
+      всегда системный подход.
+    </p>
+
+    <p>
+      Провальные проекты начинаются с фразы «давайте попробуем тут AI». Демку собрать просто.
+      Превратить её в актив, приносящий прибыль, — несоизмеримо сложнее. Так рождается
+      «кладбище пилотов».
+    </p>
+
+    <p>
+      Здесь я пишу о том, как строить AI как бизнес-функцию: постоянную фабрику решений,
+      а не разовый аттракцион.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <section id="articles">
+    <h2 class="section-label">Статьи</h2>
+
+    {posts.length === 0 ? (
+      <p style="color: var(--color-text-secondary); font-size: 14px;">
+        Пока пусто. Скоро первая статья.
+      </p>
+    ) : (
+      <div class="posts-list">
+        {posts.map((post) => (
+          <>
+            <span class="post-date">{formatDate(post.data.date)}</span>
+            <a href={`/posts/${post.slug}/`} class="post-title">
+              {post.data.title}
+            </a>
+          </>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <hr class="divider" />
+
+  <section id="contacts">
+    <h2 class="section-label">Контакты</h2>
+
+    <div class="contacts">
+      <span class="key">Канал</span>
+      <a href="https://t.me/vikulin_ai">t.me/vikulin_ai</a>
+
+      <span class="key">Telegram</span>
+      <a href="https://t.me/seva_batareika">t.me/seva_batareika</a>
+
+      <span class="key">Email</span>
+      <a href="mailto:va.vikulin@yandex.ru">va.vikulin@yandex.ru</a>
+    </div>
+  </section>
+
+  <div class="footer">© {new Date().getFullYear()} Всеволод Викулин</div>
+</BaseLayout>

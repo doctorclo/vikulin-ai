@@ -1,0 +1,12 @@
+---
+const { pathname } = Astro.url;
+const isWriting = pathname.startsWith('/posts');
+---
+
+<header class="topbar">
+  <a href="/" class="brand">Всеволод Викулин</a>
+  <nav>
+    <a href="/#articles" class={isWriting ? 'active' : ''}>Статьи</a>
+    <a href="/#contacts">Контакты</a>
+  </nav>
+</header>

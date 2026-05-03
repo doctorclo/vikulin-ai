@@ -1,0 +1,55 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'posts'>;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+const formatDate = (date: Date) => {
+  const months = [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+  ];
+  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+};
+---
+
+<BaseLayout title={post.data.title} description={post.data.description} wide={true}>
+  <Topbar />
+
+  <div class="article-layout">
+    <article>
+      <header class="article-header">
+        <h1>{post.data.title}</h1>
+        <div class="meta">{formatDate(post.data.date)}</div>
+        {post.data.description && <p class="description">{post.data.description}</p>}
+      </header>
+
+      <div class="article-content">
+        <Content />
+      </div>
+
+      <footer class="article-footer">
+        <a href="/#articles">← Все статьи</a>
+      </footer>
+    </article>
+
+    <TableOfContents headings={headings} />
+  </div>
+
+  <div class="footer">© {new Date().getFullYear()} Всеволод Викулин</div>
+</BaseLayout>
