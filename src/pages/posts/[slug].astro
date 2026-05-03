@@ -39,6 +39,8 @@ const formatDate = (date: Date) => {
         {post.data.description && <p class="description">{post.data.description}</p>}
       </header>
 
+      <TableOfContents headings={headings} variant="mobile" />
+
       <div class="article-content">
         <Content />
       </div>
@@ -48,7 +50,7 @@ const formatDate = (date: Date) => {
       </footer>
     </article>
 
-    <TableOfContents headings={headings} />
+    <TableOfContents headings={headings} variant="desktop" />
   </div>
 
   <div class="footer">© {new Date().getFullYear()} Всеволод Викулин</div>

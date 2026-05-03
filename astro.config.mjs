@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://vikulin.ai',
-  base: '/vikulin-ai',          // ← эта строка должна быть!
+  base: '/vikulin-ai',
   integrations: [sitemap()],
   markdown: {
     shikiConfig: {

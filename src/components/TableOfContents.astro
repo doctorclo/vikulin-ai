@@ -7,75 +7,75 @@ interface Heading {
 
 interface Props {
   headings: Heading[];
+  variant: 'mobile' | 'desktop';
 }
 
-const { headings } = Astro.props;
+const { headings, variant } = Astro.props;
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
-{tocHeadings.length > 0 && (
-  <>
-    <details class="toc-mobile">
-      <summary>Содержание</summary>
-      <nav class="toc-list">
-        {tocHeadings.map((h) => (
-          <a href={`#${h.slug}`} class={`lvl-${h.depth}`}>{h.text}</a>
-        ))}
-      </nav>
-    </details>
+{tocHeadings.length > 0 && variant === 'mobile' && (
+  <details class="toc-mobile">
+    <summary>Содержание</summary>
+    <nav class="toc-list">
+      {tocHeadings.map((h) => (
+        <a href={`#${h.slug}`} class={`lvl-${h.depth}`}>{h.text}</a>
+      ))}
+    </nav>
+  </details>
+)}
 
-    <aside class="toc-desktop">
-      <div class="toc-label">На этой странице</div>
-      <nav class="toc-list" id="toc-list">
-        {tocHeadings.map((h) => (
-          <a href={`#${h.slug}`} class={`lvl-${h.depth}`} data-toc-link={h.slug}>{h.text}</a>
-        ))}
-      </nav>
-    </aside>
+{tocHeadings.length > 0 && variant === 'desktop' && (
+  <aside class="toc-desktop">
+    <div class="toc-label">На этой странице</div>
+    <nav class="toc-list" id="toc-list">
+      {tocHeadings.map((h) => (
+        <a href={`#${h.slug}`} class={`lvl-${h.depth}`} data-toc-link={h.slug}>{h.text}</a>
+      ))}
+    </nav>
+  </aside>
+)}
 
-    <script>
-      const links = document.querySelectorAll('[data-toc-link]') as NodeListOf<HTMLAnchorElement>;
-      const headingMap = new Map<string, HTMLAnchorElement>();
-      links.forEach((link) => {
-        const slug = link.dataset.tocLink;
-        if (slug) headingMap.set(slug, link);
-      });
+{tocHeadings.length > 0 && variant === 'desktop' && (
+  <script>
+    const links = document.querySelectorAll('[data-toc-link]') as NodeListOf<HTMLAnchorElement>;
+    const headingMap = new Map<string, HTMLAnchorElement>();
+    links.forEach((link) => {
+      const slug = link.dataset.tocLink;
+      if (slug) headingMap.set(slug, link);
+    });
 
-      const headings = Array.from(headingMap.keys())
-        .map((slug) => document.getElementById(slug))
-        .filter((el): el is HTMLElement => el !== null);
+    const headings = Array.from(headingMap.keys())
+      .map((slug) => document.getElementById(slug))
+      .filter((el): el is HTMLElement => el !== null);
 
-      const setActive = (slug: string) => {
-        links.forEach((l) => l.classList.remove('active'));
-        const link = headingMap.get(slug);
-        if (link) link.classList.add('active');
-      };
+    const setActive = (slug: string) => {
+      links.forEach((l) => l.classList.remove('active'));
+      const link = headingMap.get(slug);
+      if (link) link.classList.add('active');
+    };
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          // Найти все заголовки сейчас в viewport
-          const visible = entries
-            .filter((e) => e.isIntersecting)
-            .map((e) => e.target as HTMLElement);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .map((e) => e.target as HTMLElement);
 
-          if (visible.length > 0) {
-            // Берём самый верхний из видимых
-            const topmost = visible.reduce((a, b) =>
-              a.getBoundingClientRect().top < b.getBoundingClientRect().top ? a : b
-            );
-            setActive(topmost.id);
-          }
-        },
-        {
-          rootMargin: '-80px 0px -70% 0px',
-          threshold: 0,
+        if (visible.length > 0) {
+          const topmost = visible.reduce((a, b) =>
+            a.getBoundingClientRect().top < b.getBoundingClientRect().top ? a : b
+          );
+          setActive(topmost.id);
         }
-      );
+      },
+      {
+        rootMargin: '-80px 0px -70% 0px',
+        threshold: 0,
+      }
+    );
 
-      headings.forEach((h) => observer.observe(h));
+    headings.forEach((h) => observer.observe(h));
 
-      // Подсветить первый при загрузке
-      if (headings.length > 0) setActive(headings[0].id);
-    </script>
-  </>
+    if (headings.length > 0) setActive(headings[0].id);
+  </script>
 )}
