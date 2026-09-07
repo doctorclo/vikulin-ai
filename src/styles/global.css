@@ -580,6 +580,11 @@ img {
   overflow-x: auto;
 }
 
+.article-content pre:not(:has(code[class*="language-"])) {
+  background: #f0f0ee;
+  border-color: var(--color-accent);
+}
+
 .article-content pre code {
   background: transparent;
   border: none;
@@ -603,4 +608,58 @@ img {
 
 .article-footer a:hover {
   color: var(--color-accent);
+}
+
+/* ───── Tables ───── */
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 14px;
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  overflow-x: auto;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .article-content table {
+    display: table;
+  }
+}
+
+.article-content thead tr {
+  border-bottom: 0.5px solid var(--color-accent);
+}
+
+.article-content th {
+  padding: 14px 20px 14px 0;
+  text-align: left;
+  vertical-align: bottom;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.article-content th:last-child {
+  padding-right: 0;
+}
+
+.article-content td {
+  padding: 14px 20px 14px 0;
+  vertical-align: top;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.article-content td:last-child {
+  padding-right: 0;
+}
+
+.article-content td:first-child {
+  font-weight: 500;
+  color: var(--color-text);
 }
