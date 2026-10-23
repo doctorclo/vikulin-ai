@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Topbar from '../components/Topbar.astro';
+import { Content } from '../texts/about.md';
+---
+
+<BaseLayout
+  title="Обо мне — Всеволод Викулин"
+  description="10 лет внедряю AI в крупнейших российских технологических компаниях: VK, Яндекс, Т-Банк. Преподаю в ВШЭ."
+>
+  <Topbar />
+
+  <article>
+    <div class="page-eyebrow">Обо мне</div>
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
