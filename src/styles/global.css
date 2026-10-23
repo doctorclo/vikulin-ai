@@ -703,3 +703,8 @@ img {
 .offer + .divider {
   margin: 2rem 0 2.5rem;
 }
+
+.offer-sep {
+  color: #b0b0b0;
+  margin: 0 0.3rem;
+}
