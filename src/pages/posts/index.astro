@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Topbar from '../../components/Topbar.astro';
+
+const posts = (await getCollection('posts', ({ data }) => data.draft === false)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const months = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+];
+const formatDay = (date: Date) => `${date.getDate()} ${months[date.getMonth()]}`;
+
+const byYear = new Map<number, typeof posts>();
+for (const post of posts) {
+  const year = post.data.date.getFullYear();
+  const list = byYear.get(year) ?? [];
+  list.push(post);
+  byYear.set(year, list);
+}
+const years = [...byYear.entries()];
+---
+
+<BaseLayout
+  title="Статьи — Всеволод Викулин"
+  description="Статьи про внедрение AI в бизнес: стратегия, агенты, качество, экономика."
+>
+  <Topbar />
+
+  <header class="article-header">
+    <h1>Статьи</h1>
+    <div class="meta">Про внедрение AI в бизнес: стратегия, агенты, качество, экономика</div>
+  </header>
+
+  <div class="archive">
+    {years.map(([year, items]) => (
+      <section class="archive-year">
+        <div class="archive-year-label">{year}</div>
+        <div class="archive-items">
+          {items.map((post) => (
+            <div class="archive-item">
+              <a href={`/posts/${post.slug}/`} class="archive-title">{post.data.title}</a>
+              {post.data.description && <p class="archive-desc">{post.data.description}</p>}
+              <div class="archive-date">{formatDay(post.data.date)}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>
