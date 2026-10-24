@@ -903,3 +903,21 @@ img {
 .page-eyebrow + .archive {
   margin-top: 2.5rem;
 }
+
+/* ───── About photo ───── */
+
+.about-photo {
+  margin: 0 0 2.5rem;
+}
+
+.about-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.about-photo figcaption {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 0.6rem;
+}
