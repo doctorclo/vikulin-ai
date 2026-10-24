@@ -1,10 +1,80 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Topbar from '../components/Topbar.astro';
+
+const texts = [
+  {
+    source: 'РБК',
+    date: 'сентябрь 2026',
+    title: 'С чего начать внедрение ИИ — и нужен ли он вам на самом деле',
+    url: 'https://www.rbc.ru/education/02/09/2026/6a85d3469a7947b4f67a6132',
+    text: 'Как понять, нужен ли компании ИИ или хватит обычной автоматизации, с каких процессов начинать и как оценить готовность к внедрению: стратегия, данные, команда.',
+  },
+  {
+    source: 'IQ Media (ВШЭ)',
+    date: 'май 2026',
+    title: 'Генеративный ИИ для руководителей: почему одни компании получают эффект, а другие — бесконечный дорогой пилот',
+    url: 'https://iq-media.ru/business/generativnyy-ii-dlya-rukovoditeley-pochemu-odni-kompanii-poluchayut-effekt-a-drugie-beskonechnyy-dorogoy-pilot',
+    text: 'Какие GenAI-кейсы реально окупаются, почему пилоты не доходят до внедрения, какие метрики зафиксировать до старта и когда выгоднее купить готовое решение.',
+  },
+];
+
+const talks = [
+  {
+    source: 'GigaConf',
+    date: 'октябрь 2026',
+    title: 'Стратегия внедрения AI-агентов',
+    url: 'https://vk.ru/video-22522055_456248367',
+    text: 'Как построить в компании постоянный процесс разработки AI-агентов — «агентский завод». На опыте команды Т-Банка: путь агента от идеи до продакшена, новые роли вроде forward deployed engineer и AI-трансформатора, устройство команд, работа со стейкхолдерами и то, что в этом процессе уже можно автоматизировать.',
+  },
+  {
+    source: 'Желтый AI',
+    date: 'июль 2026',
+    title: 'Агентская платформа здорового человека',
+    url: 'https://www.youtube.com/watch?v=GNWJMhU81Bs',
+    text: 'Почему поддержка — самый понятный кейс для AI-агентов, что не так с системами, которые называют себя агентскими платформами, и как в Т-Банке строят платформу для агентов в клиентском сервисе.',
+  },
+  {
+    source: 'DataFest',
+    date: 'май 2026',
+    title: 'Реальная автоматизация: в каких процессах AI-агенты приносят пользу',
+    url: 'https://www.youtube.com/watch?v=wTepzdnK4XE',
+    text: 'Какие бизнес-модели внедрения AI существуют и как считать их окупаемость. Почему в AI лучше всего работает платформенная модель и как с её помощью выбирать процессы для агентизации с максимальным бизнес-эффектом.',
+  },
+];
 ---
 
-<BaseLayout title="В медиа — Всеволод Викулин">
+<BaseLayout
+  title="В медиа — Всеволод Викулин"
+  description="Статьи, интервью и выступления о внедрении AI в бизнес."
+>
   <Topbar />
 
   <div class="page-eyebrow">В медиа</div>
+
+  <section class="media-section">
+    <h2 class="media-heading">Статьи и интервью</h2>
+    <div class="media-list">
+      {texts.map((item) => (
+        <div class="media-item">
+          <div class="media-meta">{item.source} · {item.date}</div>
+          <a href={item.url} class="media-title" target="_blank" rel="noopener">{item.title}</a>
+          <p class="media-desc">{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="media-section">
+    <h2 class="media-heading">Выступления</h2>
+    <div class="media-list">
+      {talks.map((item) => (
+        <div class="media-item">
+          <div class="media-meta">{item.source} · {item.date}</div>
+          <a href={item.url} class="media-title" target="_blank" rel="noopener"><span class="media-play">▶&#xFE0E;</span>{item.title}</a>
+          <p class="media-desc">{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

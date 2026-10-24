@@ -838,3 +838,68 @@ img {
     margin-bottom: 1.25rem;
   }
 }
+
+/* ───── Media page ───── */
+
+.page-eyebrow + .media-section {
+  margin-top: 2.5rem;
+}
+
+.media-section + .media-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 0.5px solid var(--color-accent);
+}
+
+.media-heading {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+  margin-bottom: 1.75rem;
+}
+
+.media-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.media-meta {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.media-title {
+  display: block;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+.media-title:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+.media-play {
+  font-size: 0.7em;
+  margin-right: 0.45em;
+  vertical-align: 1px;
+}
+
+.media-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.page-eyebrow + .archive {
+  margin-top: 2.5rem;
+}
