@@ -1027,3 +1027,9 @@ img {
   line-height: inherit;
   top: 0;
 }
+
+.session-top-cta {
+  margin-top: 1rem;
+  font-size: 15px;
+  font-weight: 500;
+}
