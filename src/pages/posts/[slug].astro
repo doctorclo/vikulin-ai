@@ -3,6 +3,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Topbar from '../../components/Topbar.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import SessionBanner from '../../components/SessionBanner.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -44,6 +45,13 @@ const formatDate = (date: Date) => {
       <div class="article-content">
         <Content />
       </div>
+
+      <div class="article-banner">
+
+        <SessionBanner />
+
+      </div>
+
 
       <footer class="article-footer">
         <a href="/posts/">← Все статьи</a>
