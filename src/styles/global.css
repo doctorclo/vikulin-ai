@@ -1011,3 +1011,19 @@ img {
 .media-heading {
   text-wrap: balance;
 }
+
+/* ───── Bullet list nested in numbered list ───── */
+
+.article-content ol ul li {
+  padding-left: 32px;
+  counter-increment: none;
+}
+
+.article-content ol ul li::before {
+  content: "—";
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: 0;
+  line-height: inherit;
+  top: 0;
+}
