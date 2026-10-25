@@ -33,11 +33,6 @@ body {
   line-height: 1.6;
 }
 
-::selection {
-  background: var(--color-accent);
-  color: #ffffff;
-}
-
 a {
   color: var(--color-accent);
   text-decoration: underline;
@@ -920,4 +915,99 @@ img {
   font-size: 12px;
   color: var(--color-text-muted);
   margin-top: 0.6rem;
+}
+
+/* ───── McKinsey-style typography ───── */
+
+:root {
+  --font-brand: 'Prata', Georgia, serif;
+  --color-heading: #0D0D4A;
+}
+
+.topbar .brand {
+  display: inline-flex;
+  flex-direction: column;
+  font-weight: 400;
+  line-height: 1.02;
+  color: var(--color-heading);
+}
+
+.topbar .brand span + span {
+  padding-left: 1.15em;
+}
+
+.article-header h1,
+.article-content h2,
+.article-content h3,
+.media-heading {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-heading);
+}
+
+.article-header h1 { font-size: 32px; line-height: 1.2; }
+.article-content h2 { font-size: 24px; }
+.article-content h3 { font-size: 20px; }
+.media-heading { font-size: 24px; }
+
+@media (max-width: 640px) {
+  .article-header h1 { font-size: 26px; }
+}
+
+.article-header .eyebrow,
+.page-eyebrow {
+  color: var(--color-heading);
+}
+
+.article-content ol li::before,
+.archive-year-label,
+.cv-years {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}
+
+.article-header .eyebrow,
+.page-eyebrow {
+  font-weight: 600;
+}
+
+/* ───── Session banner title ───── */
+
+.offer-title {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--color-heading);
+  margin-bottom: 0.35rem;
+}
+
+/* ───── Unified labels ───── */
+
+.section-label,
+.toc-desktop .toc-label {
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+.topbar nav a.active {
+  color: var(--color-heading);
+}
+
+.topbar nav a.active:hover {
+  color: var(--color-accent);
+}
+
+/* ───── Heading line breaks ───── */
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.article-header h1,
+.article-content h2,
+.offer-title,
+.media-heading {
+  text-wrap: balance;
 }
