@@ -1037,3 +1037,19 @@ img {
 .article-banner {
   margin-top: 3rem;
 }
+
+/* ───── Heading font: Source Serif ───── */
+
+:root {
+  --font-heading: 'Source Serif 4', Georgia, serif;
+}
+
+.article-header h1,
+.article-content h2,
+.article-content h3,
+.media-heading,
+.offer-title {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
