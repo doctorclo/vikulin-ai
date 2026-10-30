@@ -1,19 +1,19 @@
 ---
 const { pathname } = Astro.url;
-const isStrategy = pathname.startsWith('/strategy');
 const isMethod = pathname.startsWith('/method');
-const isAbout = pathname.startsWith('/about');
-const isMedia = pathname.startsWith('/media');
+const isStrategy = pathname.startsWith('/strategy');
 const isWriting = pathname.startsWith('/posts');
+const isMedia = pathname.startsWith('/media');
+const isAbout = pathname.startsWith('/about');
 ---
 
 <header class="topbar">
   <a href="/" class="brand"><span>Всеволод</span><span>Викулин</span></a>
   <nav>
-    <a href="/strategy/" class={isStrategy ? 'active' : ''}>Стратегия</a>
     <a href="/method/" class={isMethod ? 'active' : ''}>Метод</a>
-    <a href="/about/" class={isAbout ? 'active' : ''}>Обо мне</a>
-    <a href="/media/" class={isMedia ? 'active' : ''}>В медиа</a>
+    <a href="/strategy/" class={isStrategy ? 'active' : ''}>Стратегия</a>
     <a href="/posts/" class={isWriting ? 'active' : ''}>Статьи</a>
+    <a href="/media/" class={isMedia ? 'active' : ''}>В медиа</a>
+    <a href="/about/" class={isAbout ? 'active' : ''}>Обо мне</a>
   </nav>
 </header>
