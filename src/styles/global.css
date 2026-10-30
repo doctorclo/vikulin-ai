@@ -1053,3 +1053,73 @@ img {
   font-weight: 600;
   letter-spacing: -0.2px;
 }
+
+/* ───── Home page v2 ───── */
+
+.intro {
+  margin-bottom: 0;
+}
+
+.intro-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.intro-list li {
+  position: relative;
+  padding-left: 32px;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.intro-list li:last-child {
+  margin-bottom: 0;
+}
+
+.intro-list li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-text-muted);
+}
+
+.intro-list strong {
+  font-weight: 600;
+}
+
+.intro .home-more,
+.home-about .home-more {
+  margin-top: 1.5rem;
+}
+
+.home-about {
+  max-width: 600px;
+}
+
+.home-about p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.home-cv {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  row-gap: 0.4rem;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0.25rem 0 1.25rem;
+}
+
+.home-cv-co {
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+@media (max-width: 480px) {
+  .home-cv {
+    grid-template-columns: 76px 1fr;
+  }
+}

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Topbar from '../components/Topbar.astro';
+import { Content } from '../texts/session.md';
+---
+
+<BaseLayout
+  title="Нормальная AI-стратегия"
+  description="Быстрый и прагматичный вход в AI без воды на 150 слайдов: интервью с ключевыми руководителями, список процессов для перестройки и план быстрых побед на ближайшие месяцы."
+>
+  <Topbar />
+
+  <article>
+    <header class="article-header">
+      <div class="eyebrow">Стратегия</div>
+      <h1>Нормальная <span class="nowrap">AI-стратегия</span></h1>
+      <div class="meta">2–3 недели · работа с ключевыми руководителями</div>
+      <p class="session-top-cta"><a href="#contacts">Написать мне →</a></p>
+    </header>
+
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
