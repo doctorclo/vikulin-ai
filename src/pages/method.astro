@@ -1,28 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Topbar from '../components/Topbar.astro';
-import SessionBanner from '../components/SessionBanner.astro';
 import { Content } from '../texts/method.md';
 ---
 
 <BaseLayout
   title="Метод — Всеволод Викулин"
-  description="AI-трансформация — это перестройка операционной модели компании, а не набор разрозненных пилотов."
+  description="Почему 90% компаний застряли в бесконечных AI-пилотах и как внедрять AI там, где лежат деньги: ключевой процесс, перестройка вместо «AI-пыли», своя команда и быстрые победы."
 >
   <Topbar />
 
   <article>
     <header class="article-header">
       <div class="eyebrow">Метод</div>
-      <h1>AI-трансформация — это перестройка операционной модели компании, а не набор разрозненных пилотов</h1>
+      <h1>Почему 90% компаний застряли в&nbsp;бесконечных <span class="nowrap">AI-пилотах</span></h1>
     </header>
 
     <div class="article-content">
       <Content />
     </div>
   </article>
-
-  <div class="page-banner">
-    <SessionBanner />
-  </div>
 </BaseLayout>
